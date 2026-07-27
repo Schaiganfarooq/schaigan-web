@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;            /* stable height on mobile (ignores browser chrome) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,7 +220,56 @@
 
 /* ============ responsive ============ */
 @media (max-width: 860px) {
+  .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
   .about__grid { grid-template-columns: 1fr; }
-  .proj__link { grid-template-columns: 40px 1fr 28px; }
+  .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
   .proj__meta { display: none; }
+  .work__marquee-item { gap: 24px; padding: 0 22px; }
+}
+
+/* Phones */
+@media (max-width: 560px) {
+  .hero { height: 220vh; }
+  .hero__eyebrow { margin-bottom: 18px; }
+  /* Unbounded is very wide — keep the longest name word inside the viewport */
+  .hero__title { font-size: clamp(1.35rem, 6.2vw, 2.2rem); }
+  .contact__big { font-size: clamp(1.6rem, 7.4vw, 3rem); }
+
+  .intro__text { max-width: 100%; }
+
+  .work__marquee { padding: 14px 0; margin-bottom: var(--gap-md); }
+  .work__marquee-item { font-size: 1.3rem; padding: 0 18px; gap: 18px; }
+  .work__head { margin-bottom: var(--gap-sm); }
+
+  .proj__link {
+    grid-template-columns: 1fr auto;        /* number sits inline with the title */
+    row-gap: 10px;
+    padding: 22px 2px;
+    align-items: start;
+  }
+  .proj__link:hover { padding-left: 2px; }  /* no hover shift on touch */
+  .proj__n { grid-row: 1; grid-column: 1; margin-bottom: 2px; }
+  .proj__body { grid-row: 2; grid-column: 1 / -1; }
+  .proj__arrow { grid-row: 1; grid-column: 2; align-self: center; }
+  .proj__desc { font-size: 0.92rem; }
+
+  .about__lead { max-width: 100%; }
+  .about__body { max-width: 100%; }
+
+  .contact__row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .contact__socials { gap: 22px; }
+  .contact__footer { gap: 6px; }
+  .contact__footer span:last-child { opacity: 0.7; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .hero__title { font-size: 1.2rem; }
+  .contact__big { font-size: 1.45rem; }
+  :root { --gutter: 18px; }
+}
+
+/* Coarse-pointer devices: hide the mouse-parallax-dependent hint nicety, keep touch clean */
+@media (hover: none) {
+  .proj__link:hover .proj__arrow { transform: none; }
 }

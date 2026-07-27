@@ -13,13 +13,16 @@ export default function FlyHero() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    // Lighter load on phones: fewer particles, lower pixel ratio, no MSAA.
+    const isMobile = window.matchMedia('(max-width: 760px)').matches;
+    const maxDpr = isMobile ? 1.5 : 2;
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
-      antialias: true,
+      antialias: !isMobile,
       powerPreference: 'high-performance',
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x121010, 0.0022);
@@ -28,7 +31,7 @@ export default function FlyHero() {
     camera.position.set(0, 0, 60);
 
     // --- Particle field: a long tunnel of stars along -Z ---
-    const COUNT = 5200;
+    const COUNT = isMobile ? 2600 : 5200;
     const DEPTH = 900;      // total length of the tunnel
     const RADIUS = 130;     // tunnel radius
     const positions = new Float32Array(COUNT * 3);
@@ -56,7 +59,7 @@ export default function FlyHero() {
       blending: THREE.AdditiveBlending,
       uniforms: {
         uTime: { value: 0 },
-        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, maxDpr) },
         uColor: { value: new THREE.Color(0xf4f2f0) },
       },
       vertexShader: /* glsl */ `
