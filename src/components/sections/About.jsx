@@ -15,7 +15,7 @@ export default function About() {
         duration: 1,
         ease: 'expo.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: root.current, start: 'top 70%' },
+        scrollTrigger: { trigger: root.current, start: 'top 70%', toggleActions: 'play none none reverse' },
       });
     }, root);
     return () => ctx.revert();
