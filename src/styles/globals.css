@@ -16,6 +16,14 @@
   --body: 'Space Grotesk', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --max: 1400px;
+
+  /* Spacing scale — one rhythm shared across every section */
+  --section: clamp(88px, 15vh, 190px);   /* vertical padding between sections */
+  --gutter: clamp(24px, 6vw, 64px);      /* page side padding */
+  --gap-xs: clamp(10px, 1.2vw, 14px);
+  --gap-sm: clamp(16px, 2vw, 26px);
+  --gap-md: clamp(30px, 4vw, 52px);
+  --gap-lg: clamp(48px, 7vw, 96px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,7 +53,7 @@ a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button { font-family: inherit; cursor: pointer; background: none; border: none; color: inherit; }
 
-.container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+.container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 
 /* Display type — Unbounded, tight, uppercase feel of the original */
 .display {
