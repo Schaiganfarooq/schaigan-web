@@ -145,60 +145,9 @@
 }
 .about__grid {
   display: grid;
-  grid-template-columns: 0.82fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: var(--gap-lg);
   align-items: start;
-}
-
-/* Portrait — grayscale + palette tint by default, warms to full colour on hover */
-.about__media { margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.about__portrait {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--bg-2);
-}
-.about__portrait::before {   /* fallback shown until the image is added */
-  content: 'SF';
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: 3rem;
-  letter-spacing: 0.05em;
-  color: var(--fg-faint);
-}
-.about__portrait img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 22%;
-  display: block;
-  filter: grayscale(1) contrast(1.05) brightness(0.92);
-  transform: scale(1.03);
-  transition: filter 0.7s var(--ease), transform 1s var(--ease);
-}
-.about__portrait:hover img {
-  filter: grayscale(0) contrast(1) brightness(1);
-  transform: scale(1);
-}
-.about__portrait::after {   /* tint to seat the photo in the dark palette */
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(18, 16, 16, 0) 42%, rgba(18, 16, 16, 0.55) 100%);
-}
-.about__caption {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--fg-faint);
 }
 .about__lead {
   font-size: clamp(2rem, 5vw, 4rem);
@@ -207,7 +156,7 @@
   max-width: 14ch;
 }
 .about__body { color: var(--fg-dim); font-size: clamp(1rem, 1.5vw, 1.25rem); max-width: 46ch; margin-bottom: var(--gap-sm); }
-.about__skills { list-style: none; border-top: 1px solid var(--line); margin-top: var(--gap-md); }
+.about__skills { list-style: none; border-top: 1px solid var(--line); }
 .about__skill {
   display: flex;
   align-items: baseline;
@@ -273,7 +222,6 @@
 @media (max-width: 860px) {
   .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
   .about__grid { grid-template-columns: 1fr; }
-  .about__media { max-width: 440px; }      /* keep the stacked portrait reasonable */
   .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
   .proj__meta { display: none; }
   .work__marquee-item { gap: 24px; padding: 0 22px; }

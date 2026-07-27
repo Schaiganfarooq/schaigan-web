@@ -15,7 +15,7 @@ export default function About() {
         duration: 1,
         ease: 'expo.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: root.current, start: 'top 72%' },
+        scrollTrigger: { trigger: root.current, start: 'top 70%' },
       });
     }, root);
     return () => ctx.revert();
@@ -24,19 +24,7 @@ export default function About() {
   return (
     <section className="about" id="about" ref={root}>
       <div className="container about__grid">
-        <figure className="about__media about__reveal">
-          <div className="about__portrait">
-            <img
-              src="/portrait.jpg"
-              alt="Schaigan Farooq"
-              loading="lazy"
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
-          </div>
-          <figcaption className="about__caption">Schaigan Farooq · UI/UX Designer</figcaption>
-        </figure>
-
-        <div className="about__content">
+        <div className="about__left">
           <p className="eyebrow about__reveal">About</p>
           <h2 className="about__lead display about__reveal">
             Design that gets out of the way.
@@ -50,9 +38,11 @@ export default function About() {
             I work across the full design lifecycle, collaborating closely with developers to ship
             products that feel effortless.
           </p>
-          <ul className="about__skills about__reveal">
+        </div>
+        <div className="about__right">
+          <ul className="about__skills">
             {SKILLS.map((s, i) => (
-              <li className="about__skill" key={s}>
+              <li className="about__skill about__reveal" key={s}>
                 <span className="about__skill-n">0{i + 1}</span> {s}
               </li>
             ))}
