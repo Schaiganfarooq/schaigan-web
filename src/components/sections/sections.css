@@ -19,9 +19,11 @@
 .hero__eyebrow { margin-bottom: clamp(22px, 2.6vw, 36px); }
 .hero__title {
   font-size: clamp(2.8rem, 13vw, 13rem);
+  line-height: 0.98;
   color: var(--fg);
   max-width: 100%;
 }
+.hero__line + .hero__line { margin-top: 0.04em; }
 .hero__line { display: block; overflow: hidden; }
 .hero__word { display: inline-block; will-change: transform; }
 
@@ -69,12 +71,13 @@
   font-family: var(--display);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 1.06;
-  letter-spacing: -0.02em;
+  line-height: 1.16;
+  letter-spacing: -0.015em;
   font-size: clamp(1.6rem, 4.6vw, 4rem);
-  max-width: 20ch;
+  max-width: 22ch;
 }
-.intro__w { display: inline-block; }
+/* inline-block spans drop their whitespace — restore the word gap explicitly */
+.intro__w { display: inline-block; margin-right: 0.26em; }
 
 /* ============ WORK ============ */
 .work { padding-bottom: var(--section); }
@@ -116,10 +119,10 @@
 .proj__body { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 12px); }
 .proj__title {
   font-size: clamp(1.6rem, 4vw, 3.2rem);
-  line-height: 1;
+  line-height: 1.04;
   transition: opacity 0.4s var(--ease);
 }
-.proj__desc { color: var(--fg-dim); max-width: 52ch; font-size: 0.98rem; }
+.proj__desc { color: var(--fg-dim); max-width: 52ch; font-size: 0.98rem; line-height: 1.55; }
 .proj__meta {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
@@ -147,6 +150,7 @@
 }
 .about__lead {
   font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.04;
   margin: var(--gap-sm) 0 var(--gap-md);
   max-width: 14ch;
 }
@@ -171,7 +175,7 @@
 .contact__big {
   display: block;
   font-size: clamp(2.8rem, 13vw, 12rem);
-  line-height: 0.9;
+  line-height: 0.94;
   margin: var(--gap-sm) 0 var(--gap-lg);
   color: var(--fg);
   max-width: 100%;
@@ -204,6 +208,14 @@
   letter-spacing: 0.06em;
   color: var(--fg-faint);
 }
+
+/* ============ line-height overrides ============ */
+/* These headings also carry `.display` (line-height:0.92, good for single-line
+   type). Scoped selectors here beat that tie so multi-line headings breathe. */
+.hero .hero__title { line-height: 0.98; }
+.about .about__lead { line-height: 1.04; }
+.contact .contact__big { line-height: 0.94; }
+.proj .proj__title { line-height: 1.04; }
 
 /* ============ responsive ============ */
 @media (max-width: 860px) {
