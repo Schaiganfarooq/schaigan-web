@@ -46,8 +46,8 @@ export default function Nav() {
 
       <div className="nav__menu">
         <nav className="nav__links">
-          <a href="#work" onClick={go('work')}>Work</a>
           <a href="#about" onClick={go('about')}>About</a>
+          <a href="#work" onClick={go('work')}>Work</a>
           <a href="#contact" onClick={go('contact')}>Contact</a>
         </nav>
         <a href="mailto:shagifarooq@gmail.com" className="nav__cta" onClick={() => setOpen(false)}>
