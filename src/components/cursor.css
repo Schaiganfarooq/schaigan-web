@@ -11,9 +11,9 @@
 
 /* trailing ring */
 .cursor {
-  width: 42px;
-  height: 42px;
-  margin: -21px 0 0 -21px;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
 }
 .cursor__ring {
   display: block;
