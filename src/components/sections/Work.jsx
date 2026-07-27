@@ -88,7 +88,7 @@ export default function Work() {
           opacity: 0,
           duration: 1,
           ease: 'expo.out',
-          scrollTrigger: { trigger: row, start: 'top 88%', toggleActions: 'play none none reverse' },
+          scrollTrigger: { trigger: row, start: 'top 90%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' },
         });
       });
     }, root);

@@ -13,7 +13,7 @@ export default function Contact() {
         duration: 1.1,
         ease: 'expo.out',
         stagger: 0.06,
-        scrollTrigger: { trigger: root.current, start: 'top 70%', toggleActions: 'play none none reverse' },
+        scrollTrigger: { trigger: root.current, start: 'top 78%', end: 'bottom 30%', toggleActions: 'play reverse play reverse' },
       });
     }, root);
     return () => ctx.revert();
