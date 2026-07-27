@@ -25,13 +25,13 @@ export default function Contact() {
     <section className="contact" id="contact" ref={root}>
       <div className="container">
         <p className="eyebrow contact__eyebrow">✦ Let's work together</p>
-        <a className="contact__big display" href="mailto:mianasadali@gmail.com">
+        <a className="contact__big display" href="mailto:shagifarooq@gmail.com">
           <span className="contact__line">Get in</span>
           <span className="contact__line">touch <i className="contact__arrow">↗</i></span>
         </a>
 
         <div className="contact__row">
-          <a href="mailto:mianasadali@gmail.com" className="contact__mail">mianasadali@gmail.com</a>
+          <a href="mailto:shagifarooq@gmail.com" className="contact__mail">shagifarooq@gmail.com</a>
           <div className="contact__socials">
             <a href="https://github.com/Schaiganfarooq" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://schaiganfarooq.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a>

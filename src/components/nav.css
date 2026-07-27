@@ -8,8 +8,24 @@
   align-items: center;
   justify-content: space-between;
   padding: 22px clamp(20px, 5vw, 64px);
-  mix-blend-mode: difference;
-  color: #fff;
+  color: var(--fg);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition: background 0.45s var(--ease), backdrop-filter 0.45s var(--ease),
+    -webkit-backdrop-filter 0.45s var(--ease), border-color 0.45s var(--ease),
+    padding 0.45s var(--ease);
+}
+
+/* Glassy / blurred bar once you scroll down the page */
+.nav.is-scrolled {
+  background: rgba(18, 16, 16, 0.55);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-bottom-color: var(--line);
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .nav__brand {
