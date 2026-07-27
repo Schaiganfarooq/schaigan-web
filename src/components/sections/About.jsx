@@ -31,7 +31,7 @@ export default function About() {
           </h2>
           <p className="about__body about__reveal">
             I'm Schaigan Farooq, a UI/UX designer who turns complex problems into simple,
-            intuitive interfaces. My process is grounded in empathy and research — understanding
+            intuitive interfaces. My process is grounded in empathy and research: understanding
             real users, mapping journeys, and validating ideas before a pixel is polished.
           </p>
           <p className="about__body about__reveal">

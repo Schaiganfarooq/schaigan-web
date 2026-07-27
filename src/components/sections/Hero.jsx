@@ -55,7 +55,7 @@ export default function Hero() {
     <section className="hero" id="top" ref={root}>
       <div className="hero__sticky">
         <div className="hero__center" ref={titleRef}>
-          <p className="eyebrow hero__eyebrow" ref={subRef}>UI/UX Designer — Portfolio ’26</p>
+          <p className="eyebrow hero__eyebrow" ref={subRef}>UI/UX Designer · Portfolio ’26</p>
           <h1 className="display hero__title">
             <span className="hero__line"><span className="hero__word">Schaigan</span></span>
             <span className="hero__line"><span className="hero__word">Farooq</span></span>

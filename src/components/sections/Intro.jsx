@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const LINE = 'I design clean, human-centered digital experiences — from research to pixel-perfect prototypes.';
+const LINE = 'I design clean, human-centered digital experiences, from research to pixel-perfect prototypes.';
 
 export default function Intro() {
   const root = useRef(null);
