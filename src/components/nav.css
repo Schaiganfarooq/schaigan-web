@@ -1,0 +1,60 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(20px, 5vw, 64px);
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.nav__star { display: inline-block; animation: spin 8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.nav__links {
+  display: flex;
+  gap: 36px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.nav__links a { position: relative; padding: 4px 0; }
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background: currentColor;
+  transition: width 0.4s var(--ease);
+}
+.nav__links a:hover::after { width: 100%; }
+
+.nav__cta {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  padding: 9px 18px;
+  border-radius: 100px;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+.nav__cta:hover { background: #fff; color: #000; }
+
+@media (max-width: 760px) {
+  .nav__links { display: none; }
+}
