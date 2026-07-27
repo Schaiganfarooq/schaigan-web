@@ -87,7 +87,7 @@
   border: 1px solid currentColor;
   padding: 9px 18px;
   border-radius: 100px;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), transform 0.45s var(--ease);
   white-space: nowrap;
 }
 .nav__cta:hover { background: var(--fg); color: var(--bg); }

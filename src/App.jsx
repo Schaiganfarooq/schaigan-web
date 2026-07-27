@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import useSmoothScroll from './hooks/useSmoothScroll.js';
 import Grain from './components/Grain.jsx';
+import Cursor from './components/Cursor.jsx';
 import Loader from './components/Loader.jsx';
 import Nav from './components/Nav.jsx';
 import FlyHero from './components/hero/FlyHero.jsx';
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <>
       <Grain />
+      <Cursor />
       <Loader onComplete={handleLoaded} />
       <FlyHero />
       <Nav />

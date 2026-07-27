@@ -50,7 +50,7 @@ export default function Nav() {
           <a href="#work" onClick={go('work')}>Work</a>
           <a href="#contact" onClick={go('contact')}>Contact</a>
         </nav>
-        <a href="mailto:shagifarooq@gmail.com" className="nav__cta" onClick={() => setOpen(false)}>
+        <a href="mailto:shagifarooq@gmail.com" className="nav__cta" data-magnetic="0.4" onClick={() => setOpen(false)}>
           Let's talk
         </a>
       </div>

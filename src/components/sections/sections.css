@@ -115,7 +115,7 @@
   padding: clamp(26px, 3.6vw, 46px) 4px;
   transition: padding-left 0.5s var(--ease), background 0.5s var(--ease), color 0.5s var(--ease);
 }
-.proj__link:hover { padding-left: 20px; }
+.proj__link:hover { padding-left: 20px; background: rgba(244, 242, 240, 0.03); }
 .proj__n { font-size: 0.8rem; color: var(--fg-faint); letter-spacing: 0.1em; }
 .proj__body { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 12px); }
 .proj__title {
@@ -165,8 +165,11 @@
   border-bottom: 1px solid var(--line);
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-weight: 400;
+  transition: padding-left 0.4s var(--ease), color 0.4s var(--ease);
 }
-.about__skill-n { font-size: 0.72rem; color: var(--fg-faint); letter-spacing: 0.1em; }
+.about__skill:hover { padding-left: 12px; }
+.about__skill-n { font-size: 0.72rem; color: var(--fg-faint); letter-spacing: 0.1em; transition: color 0.4s var(--ease); }
+.about__skill:hover .about__skill-n { color: var(--fg); }
 
 /* ============ CONTACT ============ */
 .contact {
