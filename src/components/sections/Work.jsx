@@ -62,7 +62,7 @@ const PROJECTS = [
   {
     n: '09',
     title: 'Smart Water Bottle',
-    meta: 'Mobile App · IoT Health',
+    meta: 'Landing Page · Smart Water Bottle',
     desc: 'A companion app for a smart water bottle: hydration tracking, reminders, daily goals and insights, delivered as an interactive prototype designed end to end.',
     href: 'https://www.figma.com/proto/Ehp1YOx3ZrhcHc7w3jyZJA/Smart-water-Bottle?node-id=147-4',
   },
