@@ -6,8 +6,7 @@ const SKILLS = ['User Research', 'Wireframing', 'Prototyping', 'UI Design', 'Des
 
 export default function About() {
   const root = useRef(null);
-  const frameRef = useRef(null);
-  const innerRef = useRef(null);
+  const mediaRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -21,23 +20,17 @@ export default function About() {
         scrollTrigger: { trigger: root.current, start: 'top 78%', end: 'bottom 30%', toggleActions: 'play reverse play reverse' },
       });
 
-      // Premium portrait unveil: a mask-wipe on the frame + a slow zoom-out on
-      // the image. clip-path is on the frame, scale is on an inner wrapper, so
-      // neither collides with the image's own hover transform.
-      // Skipped for reduced-motion users so the photo is simply shown.
+      // Avatar reveal: fade + rise + settle. Continuous float/spin/glow are CSS.
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduced) {
-        const st = { trigger: frameRef.current, start: 'top 82%', toggleActions: 'play none none reverse' };
-        gsap.fromTo(
-          frameRef.current,
-          { clipPath: 'inset(100% 0% 0% 0%)' },
-          { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.out', scrollTrigger: st }
-        );
-        gsap.fromTo(
-          innerRef.current,
-          { scale: 1.35, yPercent: 6 },
-          { scale: 1, yPercent: 0, duration: 1.6, ease: 'expo.out', scrollTrigger: st }
-        );
+        gsap.from(mediaRef.current, {
+          opacity: 0,
+          y: 60,
+          scale: 0.9,
+          duration: 1.3,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: mediaRef.current, start: 'top 82%', toggleActions: 'play none none reverse' },
+        });
       }
     }, root);
     return () => ctx.revert();
@@ -46,17 +39,11 @@ export default function About() {
   return (
     <section className="about" id="about" ref={root}>
       <div className="container about__grid">
-        <figure className="about__media">
-          <div className="about__portrait" ref={frameRef}>
-            <div className="about__portrait-inner" ref={innerRef}>
-              <img
-                src="/portrait.jpg"
-                alt="Schaigan Farooq"
-                loading="lazy"
-                onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              />
-            </div>
-            <span className="about__index">(01)</span>
+        <figure className="about__media" ref={mediaRef}>
+          <div className="about__avatar">
+            <span className="about__avatar-glow" aria-hidden="true" />
+            <span className="about__avatar-ring" aria-hidden="true" />
+            <div className="about__avatar-img" role="img" aria-label="Schaigan Farooq" />
           </div>
           <figcaption className="about__caption">
             <span>Schaigan Farooq</span>

@@ -150,80 +150,89 @@
   align-items: start;
 }
 
-/* ---- premium portrait ---- */
-.about__media { margin: 0; display: flex; flex-direction: column; gap: 16px; }
-.about__portrait {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: var(--bg-2);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.65);
-  will-change: clip-path;
+/* ---- face avatar: circular crop, background masked into the dark theme ---- */
+.about__media {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
-.about__portrait::before {            /* fallback until the file exists */
-  content: 'SF';
+.about__avatar {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1 / 1;
+  animation: aboutFloat 6.5s var(--ease) infinite;
+}
+@keyframes aboutFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* the face itself, cropped and edge-faded so the photo background melts away */
+.about__avatar-img {
   position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: 3rem;
-  letter-spacing: 0.05em;
-  color: var(--fg-faint);
-}
-.about__portrait-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-}
-.about__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
-  filter: grayscale(1) contrast(1.06) brightness(0.93);
-  transform: scale(1);
+  inset: 5%;
+  border-radius: 50%;
+  z-index: 1;
+  background-color: var(--bg-2);
+  background-image: url('/portrait.jpg');
+  background-repeat: no-repeat;
+  background-size: 400%;
+  background-position: 46% 39%;
+  filter: grayscale(1) contrast(1.06) brightness(0.9);
   transition: filter 0.8s var(--ease), transform 0.9s var(--ease);
+  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 48%, rgba(0, 0, 0, 0.35) 66%, transparent 80%);
+  mask-image: radial-gradient(circle at 50% 46%, #000 48%, rgba(0, 0, 0, 0.35) 66%, transparent 80%);
 }
-.about__portrait:hover img {
+.about__avatar:hover .about__avatar-img {
   filter: grayscale(0) contrast(1) brightness(1);
   transform: scale(1.05);
 }
-.about__portrait::after {             /* palette tint to seat the photo */
-  content: '';
+
+/* rotating light arc around the avatar */
+.about__avatar-ring {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(18, 16, 16, 0) 40%, rgba(18, 16, 16, 0.5) 100%);
-  mix-blend-mode: multiply;
-}
-.about__index {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
+  border-radius: 50%;
   z-index: 2;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  color: var(--fg);
-  opacity: 0.85;
+  background: conic-gradient(from 0deg, transparent 0 60%, var(--fg-dim) 80%, var(--fg) 90%, transparent 97%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+  opacity: 0.5;
+  animation: aboutSpin 9s linear infinite;
 }
+@keyframes aboutSpin { to { transform: rotate(360deg); } }
+
+/* soft breathing glow behind */
+.about__avatar-glow {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(244, 242, 240, 0.09), transparent 62%);
+  filter: blur(10px);
+  animation: aboutPulse 5s var(--ease) infinite;
+}
+@keyframes aboutPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.05); }
+}
+
 .about__caption {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--fg-dim);
 }
 .about__caption-role { color: var(--fg-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  .about__avatar, .about__avatar-ring, .about__avatar-glow { animation: none; }
+}
 
 .about__lead {
   font-size: clamp(2rem, 5vw, 4rem);
