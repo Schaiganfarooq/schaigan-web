@@ -17,7 +17,7 @@
   padding: 0 var(--gutter);
 }
 .hero__center { will-change: transform, opacity, filter; max-width: 100%; }
-.hero__eyebrow { margin-bottom: clamp(20px, 2.4vw, 32px); }
+.hero__eyebrow { margin-bottom: clamp(22px, 2.6vw, 36px); }
 .hero__title {
   font-size: clamp(2.8rem, 13vw, 13rem);
   line-height: 0.98;
@@ -101,7 +101,7 @@
 }
 .work__marquee-item i { font-style: normal; color: var(--fg-faint); font-size: 0.5em; }
 
-.work__head { margin-bottom: var(--gap-lg); }
+.work__head { margin-bottom: var(--gap-md); }
 .work__heading { font-size: clamp(2.4rem, 8vw, 6rem); }
 
 .work__list { list-style: none; }
@@ -111,11 +111,11 @@
   display: grid;
   grid-template-columns: 60px 1fr auto 40px;
   align-items: center;
-  gap: clamp(22px, 3vw, 36px);
-  padding: clamp(28px, 3.8vw, 48px) 6px;
+  gap: clamp(20px, 3vw, 32px);
+  padding: clamp(26px, 3.6vw, 46px) 4px;
   transition: padding-left 0.5s var(--ease), background 0.5s var(--ease), color 0.5s var(--ease);
 }
-.proj__link:hover { padding-left: 24px; background: rgba(244, 242, 240, 0.03); }
+.proj__link:hover { padding-left: 20px; background: rgba(244, 242, 240, 0.03); }
 .proj__n { font-size: 0.8rem; color: var(--fg-faint); letter-spacing: 0.1em; }
 .proj__body { display: flex; flex-direction: column; gap: clamp(8px, 1vw, 12px); }
 .proj__title {
@@ -152,11 +152,10 @@
 .about__lead {
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.04;
-  margin: 0 0 var(--gap-md);           /* top gap comes from the eyebrow */
+  margin: var(--gap-sm) 0 var(--gap-md);
   max-width: 14ch;
 }
-.about__body { color: var(--fg-dim); font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.6; max-width: 46ch; margin-bottom: var(--gap-sm); }
-.about__body:last-of-type { margin-bottom: 0; }
+.about__body { color: var(--fg-dim); font-size: clamp(1rem, 1.5vw, 1.25rem); max-width: 46ch; margin-bottom: var(--gap-sm); }
 .about__skills { list-style: none; border-top: 1px solid var(--line); }
 .about__skill {
   display: flex;
@@ -174,14 +173,14 @@
 
 /* ============ CONTACT ============ */
 .contact {
-  padding: var(--section) 0 clamp(44px, 5vh, 64px);
+  padding: var(--section) 0 clamp(40px, 5vh, 56px);
   border-top: 1px solid var(--line);
 }
 .contact__big {
   display: block;
   font-size: clamp(2.8rem, 13vw, 12rem);
   line-height: 0.94;
-  margin: 0 0 var(--gap-lg);           /* top gap comes from the eyebrow */
+  margin: var(--gap-sm) 0 var(--gap-lg);
   color: var(--fg);
   max-width: 100%;
 }
@@ -225,11 +224,6 @@
 /* ============ responsive ============ */
 @media (max-width: 860px) {
   .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
-  /* Unbounded is extremely wide (~18x font per word). One proportional rule that
-     stays inside the viewport across the entire 320-860 range (low min so the
-     clamp min never forces an overflow on the narrowest phones). */
-  .hero__title { font-size: clamp(0.9rem, 4.6vw, 3rem); }
-  .contact__big { font-size: clamp(1rem, 5.4vw, 3.4rem); }
   .about__grid { grid-template-columns: 1fr; }
   .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
   .proj__meta { display: none; }
@@ -240,6 +234,9 @@
 @media (max-width: 560px) {
   .hero { height: 220vh; }
   .hero__eyebrow { margin-bottom: 18px; }
+  /* Unbounded is very wide — keep the longest name word inside the viewport */
+  .hero__title { font-size: clamp(1.35rem, 6.2vw, 2.2rem); }
+  .contact__big { font-size: clamp(1.6rem, 7.4vw, 3rem); }
 
   .intro__text { max-width: 100%; }
 
@@ -270,6 +267,8 @@
 
 /* Small phones */
 @media (max-width: 380px) {
+  .hero__title { font-size: 1.2rem; }
+  .contact__big { font-size: 1.45rem; }
   :root { --gutter: 18px; }
 }
 
