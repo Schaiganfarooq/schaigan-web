@@ -17,18 +17,20 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --max: 1400px;
 
-  /* Spacing scale — one rhythm shared across every section */
-  --section: clamp(88px, 15vh, 190px);   /* vertical padding between sections */
-  --gutter: clamp(24px, 6vw, 64px);      /* page side padding */
-  --gap-xs: clamp(10px, 1.2vw, 14px);
-  --gap-sm: clamp(16px, 2vw, 26px);
-  --gap-md: clamp(30px, 4vw, 52px);
-  --gap-lg: clamp(48px, 7vw, 96px);
+  /* Spacing scale — one harmonious rhythm shared across every section.
+     Steps climb ~1.8x so nested spacing always reads as distinct levels. */
+  --section: clamp(96px, 13vh, 172px);   /* vertical padding between sections */
+  --gutter: clamp(24px, 5.5vw, 64px);    /* page side padding */
+  --gap-xs: clamp(8px, 1vw, 12px);
+  --gap-sm: clamp(16px, 1.8vw, 22px);
+  --gap-md: clamp(28px, 3.4vw, 44px);
+  --gap-lg: clamp(48px, 6vw, 80px);
+  --gap-xl: clamp(72px, 9vw, 128px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
 
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
