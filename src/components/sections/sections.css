@@ -164,6 +164,15 @@
   aspect-ratio: 1 / 1;
   perspective: 900px;
 }
+/* soft static depth glow behind the portrait (does not tilt) */
+.about__avatar::before {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, rgba(244, 242, 240, 0.10), transparent 60%);
+  filter: blur(14px);
+}
 .about__avatar-tilt {
   position: absolute;
   inset: 0;
@@ -171,7 +180,7 @@
   will-change: transform;
 }
 
-/* the face itself, cropped and edge-faded so the photo background melts away */
+/* the face itself: light crop of the close-up, graded into the dark palette */
 .about__avatar-img {
   position: absolute;
   inset: 4%;
@@ -180,17 +189,29 @@
   background-color: var(--bg-2);
   background-image: url('/portrait.jpg');
   background-repeat: no-repeat;
-  background-size: 360%;
-  background-position: 47% 39%;
-  filter: grayscale(1) contrast(1.08) brightness(0.88);
+  background-size: 150%;
+  background-position: 47% 53%;
+  /* lift the dim office exposure, neutralise the warm cast, add editorial contrast */
+  filter: grayscale(1) contrast(1.16) brightness(1.06);
   transition: filter 0.8s var(--ease), transform 0.9s var(--ease);
   /* tight vignette: face stays crisp, everything else fades to the dark bg */
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 40%, rgba(0, 0, 0, 0.28) 60%, transparent 74%);
-  mask-image: radial-gradient(circle at 50% 45%, #000 40%, rgba(0, 0, 0, 0.28) 60%, transparent 74%);
+  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 46%, rgba(0, 0, 0, 0.3) 64%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 46%, #000 46%, rgba(0, 0, 0, 0.3) 64%, transparent 78%);
 }
 .about__avatar:hover .about__avatar-img {
-  filter: grayscale(0) contrast(1.02) brightness(1);
+  filter: grayscale(0) contrast(1.05) brightness(1.06) saturate(0.85);
   transform: scale(1.04);
+}
+/* subtle top-light sheen for depth */
+.about__avatar-tilt::after {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(155deg, rgba(244, 242, 240, 0.14), transparent 42%);
+  mix-blend-mode: soft-light;
 }
 
 /* a fine, static frame ring for definition (no spinning gimmick) */
@@ -290,6 +311,11 @@
 /* ============ responsive ============ */
 @media (max-width: 860px) {
   .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
+  /* Unbounded is extremely wide (~18x font per word). One proportional rule that
+     stays inside the viewport across the entire 320-860 range (low min so the
+     clamp min never forces an overflow on the narrowest phones). */
+  .hero__title { font-size: clamp(0.9rem, 4.6vw, 3rem); }
+  .contact__big { font-size: clamp(1rem, 5.4vw, 3.4rem); }
   .about__grid { grid-template-columns: 1fr; }
   .about__media { max-width: 440px; }
   .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
@@ -301,9 +327,6 @@
 @media (max-width: 560px) {
   .hero { height: 220vh; }
   .hero__eyebrow { margin-bottom: 18px; }
-  /* Unbounded is very wide — keep the longest name word inside the viewport */
-  .hero__title { font-size: clamp(1.35rem, 6.2vw, 2.2rem); }
-  .contact__big { font-size: clamp(1.6rem, 7.4vw, 3rem); }
 
   .intro__text { max-width: 100%; }
 
@@ -334,8 +357,6 @@
 
 /* Small phones */
 @media (max-width: 380px) {
-  .hero__title { font-size: 1.2rem; }
-  .contact__big { font-size: 1.45rem; }
   :root { --gutter: 18px; }
 }
 
