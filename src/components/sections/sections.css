@@ -145,9 +145,9 @@
 }
 .about__grid {
   display: grid;
-  grid-template-columns: 0.82fr 1fr;
-  gap: var(--gap-lg);
-  align-items: start;
+  grid-template-columns: 0.85fr 1fr;
+  gap: clamp(44px, 7vw, 110px);
+  align-items: center;
 }
 
 /* ---- face avatar: circular crop, background masked into the dark theme ---- */
@@ -156,67 +156,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: clamp(20px, 2.4vw, 30px);
 }
 .about__avatar {
   position: relative;
-  width: min(100%, 340px);
+  width: min(100%, 360px);
   aspect-ratio: 1 / 1;
-  animation: aboutFloat 6.5s var(--ease) infinite;
+  perspective: 900px;
 }
-@keyframes aboutFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.about__avatar-tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* the face itself, cropped and edge-faded so the photo background melts away */
 .about__avatar-img {
   position: absolute;
-  inset: 5%;
+  inset: 4%;
   border-radius: 50%;
   z-index: 1;
   background-color: var(--bg-2);
   background-image: url('/portrait.jpg');
   background-repeat: no-repeat;
-  background-size: 400%;
-  background-position: 46% 39%;
-  filter: grayscale(1) contrast(1.06) brightness(0.9);
+  background-size: 360%;
+  background-position: 47% 39%;
+  filter: grayscale(1) contrast(1.08) brightness(0.88);
   transition: filter 0.8s var(--ease), transform 0.9s var(--ease);
-  -webkit-mask-image: radial-gradient(circle at 50% 46%, #000 48%, rgba(0, 0, 0, 0.35) 66%, transparent 80%);
-  mask-image: radial-gradient(circle at 50% 46%, #000 48%, rgba(0, 0, 0, 0.35) 66%, transparent 80%);
+  /* tight vignette: face stays crisp, everything else fades to the dark bg */
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 40%, rgba(0, 0, 0, 0.28) 60%, transparent 74%);
+  mask-image: radial-gradient(circle at 50% 45%, #000 40%, rgba(0, 0, 0, 0.28) 60%, transparent 74%);
 }
 .about__avatar:hover .about__avatar-img {
-  filter: grayscale(0) contrast(1) brightness(1);
-  transform: scale(1.05);
+  filter: grayscale(0) contrast(1.02) brightness(1);
+  transform: scale(1.04);
 }
 
-/* rotating light arc around the avatar */
+/* a fine, static frame ring for definition (no spinning gimmick) */
 .about__avatar-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   z-index: 2;
-  background: conic-gradient(from 0deg, transparent 0 60%, var(--fg-dim) 80%, var(--fg) 90%, transparent 97%);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-  opacity: 0.5;
-  animation: aboutSpin 9s linear infinite;
-}
-@keyframes aboutSpin { to { transform: rotate(360deg); } }
-
-/* soft breathing glow behind */
-.about__avatar-glow {
-  position: absolute;
-  inset: -8%;
-  border-radius: 50%;
-  z-index: 0;
-  background: radial-gradient(circle, rgba(244, 242, 240, 0.09), transparent 62%);
-  filter: blur(10px);
-  animation: aboutPulse 5s var(--ease) infinite;
-}
-@keyframes aboutPulse {
-  0%, 100% { opacity: 0.45; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.05); }
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 40px -12px rgba(0, 0, 0, 0.8), 0 40px 80px -40px rgba(0, 0, 0, 0.7);
 }
 
 .about__caption {
@@ -228,11 +212,8 @@
   text-transform: uppercase;
   color: var(--fg-dim);
 }
+.about__caption-name { color: var(--fg); }
 .about__caption-role { color: var(--fg-faint); }
-
-@media (prefers-reduced-motion: reduce) {
-  .about__avatar, .about__avatar-ring, .about__avatar-glow { animation: none; }
-}
 
 .about__lead {
   font-size: clamp(2rem, 5vw, 4rem);
