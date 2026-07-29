@@ -19,7 +19,7 @@
 .hero__center { will-change: transform, opacity, filter; max-width: 100%; }
 .hero__eyebrow { margin-bottom: clamp(22px, 2.6vw, 36px); }
 .hero__title {
-  font-size: clamp(2.8rem, 13vw, 13rem);
+  font-size: clamp(3.2rem, 15vw, 15rem);
   line-height: 0.98;
   color: var(--fg);
   max-width: 100%;
@@ -224,8 +224,6 @@
 /* ============ responsive ============ */
 @media (max-width: 860px) {
   .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
-  /* keep the wide Unbounded name inside the viewport across tablet + phone */
-  .hero__title { font-size: clamp(0.9rem, 4.6vw, 3rem); }
   .about__grid { grid-template-columns: 1fr; }
   .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
   .proj__meta { display: none; }
