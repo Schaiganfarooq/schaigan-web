@@ -10,9 +10,10 @@ export default function Contact() {
       gsap.from('.contact__big .hero__word, .contact__big span', {
         yPercent: 110,
         opacity: 0,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: { trigger: root.current, start: 'top 82%', end: 'top 46%', scrub: 1 },
+        duration: 1.1,
+        ease: 'expo.out',
+        stagger: 0.06,
+        scrollTrigger: { trigger: root.current, start: 'top 78%', end: 'bottom 30%', toggleActions: 'play reverse play reverse' },
       });
     }, root);
     return () => ctx.revert();
