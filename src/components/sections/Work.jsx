@@ -91,11 +91,10 @@ export default function Work() {
       // project rows reveal
       gsap.utils.toArray('.proj').forEach((row) => {
         gsap.from(row, {
-          yPercent: 18,
+          yPercent: 22,
           opacity: 0,
-          duration: 1,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: row, start: 'top 90%', end: 'bottom 15%', toggleActions: 'play reverse play reverse' },
+          ease: 'power2.out',
+          scrollTrigger: { trigger: row, start: 'top 92%', end: 'top 60%', scrub: 1 },
         });
       });
     }, root);

@@ -9,13 +9,14 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Scroll-linked reveal: progress is tied to scroll position, so scrolling
+      // up rewinds it in perfect sync (like the scroll-jacked original).
       gsap.from('.about__reveal', {
-        y: 40,
+        y: 55,
         opacity: 0,
-        duration: 1,
-        ease: 'expo.out',
-        stagger: 0.12,
-        scrollTrigger: { trigger: root.current, start: 'top 78%', end: 'bottom 30%', toggleActions: 'play reverse play reverse' },
+        ease: 'power2.out',
+        stagger: 0.1,
+        scrollTrigger: { trigger: root.current, start: 'top 85%', end: 'top 42%', scrub: 1 },
       });
     }, root);
     return () => ctx.revert();
