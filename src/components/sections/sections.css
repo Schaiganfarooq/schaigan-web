@@ -224,6 +224,8 @@
 /* ============ responsive ============ */
 @media (max-width: 860px) {
   .hero { height: 240vh; }                 /* less empty scroll on smaller screens */
+  /* keep the wide Unbounded name inside the viewport across tablet + phone */
+  .hero__title { font-size: clamp(0.9rem, 4.6vw, 3rem); }
   .about__grid { grid-template-columns: 1fr; }
   .proj__link { grid-template-columns: 44px 1fr 28px; gap: clamp(14px, 3vw, 24px); }
   .proj__meta { display: none; }
@@ -234,8 +236,6 @@
 @media (max-width: 560px) {
   .hero { height: 220vh; }
   .hero__eyebrow { margin-bottom: 18px; }
-  /* Unbounded is very wide — keep the longest name word inside the viewport */
-  .hero__title { font-size: clamp(1.35rem, 6.2vw, 2.2rem); }
   .contact__big { font-size: clamp(1.6rem, 7.4vw, 3rem); }
 
   .intro__text { max-width: 100%; }
@@ -267,7 +267,6 @@
 
 /* Small phones */
 @media (max-width: 380px) {
-  .hero__title { font-size: 1.2rem; }
   .contact__big { font-size: 1.45rem; }
   :root { --gutter: 18px; }
 }
