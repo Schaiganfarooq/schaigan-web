@@ -19,7 +19,7 @@
 .hero__center { will-change: transform, opacity, filter; max-width: 100%; }
 .hero__eyebrow { margin-bottom: clamp(22px, 2.6vw, 36px); }
 .hero__title {
-  font-size: clamp(3.2rem, 15vw, 15rem);
+  font-size: clamp(2.4rem, 9.5vw, 8.5rem);
   line-height: 0.98;
   color: var(--fg);
   max-width: 100%;
